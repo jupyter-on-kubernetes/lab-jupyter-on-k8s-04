@@ -1,27 +1,53 @@
-LAB - Markdown Sample
-=====================
+LAB - Jupyter on Kubernetes #4
+==============================
 
-Sample workshop content using Markdown formatting for pages.
+This repository holds source files for a workshop exploring the use of operators to deploy JupyterHub to Kubernetes.
 
-For more detailed information on how to create and deploy workshops, consult
-the documentation for eduk8s at:
+Prerequisites
+-------------
 
-* https://docs.eduk8s.io
+In order to use the workshop you should have the eduk8s operator installed.
 
-If you already have the eduk8s operator installed and configured, to deploy
-and view this sample workshop, run:
+For installation instructions for the eduk8s operator see:
 
-```
-kubectl apply -f https://raw.githubusercontent.com/eduk8s/lab-markdown-sample/master/resources/workshop.yaml
-kubectl apply -f https://raw.githubusercontent.com/eduk8s/lab-markdown-sample/master/resources/training-portal.yaml
-```
+* https://github.com/eduk8s/eduk8s
 
-This will deploy a training portal hosting just this workshop. To get the
-URL for accessing the training portal run:
+Deployment
+----------
+
+To load the workshop definition run:
 
 ```
-kubectl get trainingportal/lab-markdown-sample
+kubectl apply -k github.com/jupyter-on-kubernetes/lab-jupyter-on-k8s-04
 ```
 
-The training portal is configured to allow anonymous access. For your own
-workshop content you should consider removing anonymous access.
+To deploy a sample training portal which hosts the workshop, run:
+
+```
+kubectl apply -f https://raw.githubusercontent.com/jupyter-on-kubernetes/lab-jupyter-on-k8s-04/master/resources/training-portal.yaml
+```
+
+Then run:
+
+```
+kubectl get trainingportal/lab-jupyter-on-k8s-04
+```
+
+This will output the URL to access the web portal for the training environment.
+
+You need to be a cluster admin to create the deployment using this method.
+
+Deletion
+--------
+
+To delete the training portal deployment, run:
+
+```
+kubectl delete -f https://raw.githubusercontent.com/jupyter-on-kubernetes/lab-jupyter-on-k8s-04/master/resources/training-portal.yaml
+```
+
+When you are finished with the workshop definition, you can delete it by running:
+
+```
+kubectl delete -k github.com/jupyter-on-kubernetes/lab-jupyter-on-k8s-04
+```

@@ -2,8 +2,8 @@ modules:
     workshop-overview:
         name: Workshop Overview
         exit_sign: Setup Environment
-    setup-environment:
-        name: Setup Environment
+    verify-environment:
+        name: Verify Environment
         exit_sign: Start Workshop
     exercises/01-sample-content:
         name: Sample Content

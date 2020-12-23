@@ -1,8 +1,8 @@
-name: Markdown Sample
+name: "Jupyter on Kubernetes #4"
 
 modules:
     activate:
     - workshop-overview
-    - setup-environment
+    - verify-environment
     - exercises/01-sample-content
     - workshop-summary
