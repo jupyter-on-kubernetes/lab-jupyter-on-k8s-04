@@ -11,7 +11,7 @@ metadata:
     projectcontour.io/websocket-routes: /
 spec:
   rules:
-  - host: #@ "{}-{}.{}".format(data.values.name, data.values.namespace, data.values.ingressDomain)
+  - host: #@ data.values.hostname
     http:
       paths:
       - backend:
