@@ -26,4 +26,5 @@ if [ ! -f $HOME/.jupyter/jupyter_notebook_config.json ]; then
     "password": "sha256:(@= sha256.sum(data.values.notebook.password) @)"
   }
 }
+EOF
 (@- end @)
