@@ -4,7 +4,7 @@ metadata:
   name: lab-jupyter-on-k8s-04
 spec:
   title: "Jupyter on Kubernetes #4"
-  description: A workshop exploring use of operators to deploy JupyterHub to Kubernetes
+  description: A workshop exploring use of Carvel tools to deploy Jupyter notebooks to Kubernetes.
   url: https://github.com/jupyter-on-kubernetes/lab-jupyter-on-k8s-04
   content:
     files: github.com/jupyter-on-kubernetes/lab-jupyter-on-k8s-04
