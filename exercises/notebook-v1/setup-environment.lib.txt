@@ -27,4 +27,5 @@ if [ ! -f $HOME/.jupyter/jupyter_notebook_config.json ]; then
   }
 }
 EOF
+fi
 (@- end @)
