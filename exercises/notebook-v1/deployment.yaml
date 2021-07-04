@@ -40,7 +40,7 @@ spec:
         volumeMounts:
         - name: startup
           mountPath: /usr/local/bin/before-notebook.d
-        #@ if data.values.storage.claimName or data.values.deployment.resources.requests.storage or data.values.deployment.resources:
+        #@ if data.values.storage.claimName or data.values.deployment.resources.requests.storage or data.values.deployment.resources.limits.storage:
         - name: data
           mountPath: /home/jovyan
           #@ if data.values.storage.claimName:
