@@ -23,7 +23,7 @@ if [ ! -f $HOME/.jupyter/jupyter_notebook_config.json ]; then
     cat > $HOME/.jupyter/jupyter_notebook_config.json << EOF
 {
   "NotebookApp": {
-    "password": "sha256:(@= sha256.sum(data.values.notebook.password) @)"
+    "password": "sha256:1234567890:(@= sha256.sum(data.values.notebook.password+"123456789") @)"
   }
 }
 EOF
