@@ -1,0 +1,25 @@
+#@data/values
+---
+
+name: notebook
+
+ingressDomain: example.com
+
+notebook:
+  interface: lab
+  password: jupyter
+
+deployment:
+  image: jupyter/minimal-notebook:latest
+  serviceAccountName: default
+  resources:
+    requests:
+      memory: 512Mi
+      storage: null
+    limits:
+      memory: 512Mi
+      storage: null
+
+storage:
+  claimName: null
+  subPath: null

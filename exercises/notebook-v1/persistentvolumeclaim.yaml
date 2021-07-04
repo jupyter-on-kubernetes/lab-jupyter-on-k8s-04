@@ -1,0 +1,19 @@
+#@ load("@ytt:data", "data")
+
+#@ if not data.values.storage.claimName:
+#@ if data.values.deployment.resources.requests.storage or data.values.deployment.resources.limits.storage:
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: #@ data.values.name
+  labels:
+    app: #@ data.values.name
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+#@ end
+#@ end

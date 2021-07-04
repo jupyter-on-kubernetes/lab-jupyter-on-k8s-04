@@ -1,0 +1,18 @@
+#@ load("@ytt:data", "data")
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: #@ data.values.name
+  labels:
+    app: #@ data.values.name
+spec:
+  type: ClusterIP
+  selector:
+    deployment: #@ data.values.name
+  ports:
+  - name: 8888-tcp
+    port: 8888
+    protocol: TCP
+    targetPort: 8888

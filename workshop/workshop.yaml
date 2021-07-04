@@ -4,5 +4,5 @@ modules:
     activate:
     - workshop-overview
     - verify-environment
-    - exercises/01-sample-content
+    - exercises/01-carvel-tool-suite
     - workshop-summary

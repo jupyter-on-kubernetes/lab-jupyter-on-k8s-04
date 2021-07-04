@@ -1,0 +1,61 @@
+#@ load("@ytt:data", "data")
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #@ data.values.name
+  labels:
+    app: #@ data.values.name
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      deployment: #@ data.values.name
+  template:
+    metadata:
+      labels:
+        deployment: #@ data.values.name
+    spec:
+      containers:
+      - name: notebook
+        image: #@ data.values.deployment.image
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: 8888-tcp
+          containerPort: 8888
+          protocol: TCP
+        resources:
+          limits:
+            memory: #@ data.values.deployment.resources.limits.memory
+          requests:
+            memory: #@ data.values.deployment.resources.requests.memory
+        env:
+        #@ if data.values.notebook.interface == "lab":
+        - name: JUPYTER_ENABLE_LAB
+          value: "true"
+        #@ end
+        volumeMounts:
+        - name: startup
+          mountPath: /usr/local/bin/before-notebook.d
+        - name: data
+          mountPath: /home/jovyan
+          #@ if data.values.storage.claimName:
+          subPath: data.values.storage.subPath or ""
+          #@ end
+      volumes:
+      - name: startup
+        secret:
+          name: #@ data.values.name
+      #@ if data.values.storage.claimName:
+      - name: data
+        persistentVolumeClaim:
+          claimName: #@ data.values.storage.claimName
+      #@ elif data.values.deployment.resources.requests.storage or data.values.deployment.resources.limits.storage:
+      - name: data
+        persistentVolumeClaim:
+          claimName: #@ data.values.name
+      #@ end
+

@@ -1,0 +1,20 @@
+#@ load("@ytt:data", "data")
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: #@ data.values.name
+  labels:
+    app: #@ data.values.name
+  annotations:
+    projectcontour.io/websocket-routes: /
+spec:
+  rules:
+  - host: #@ "{}-{}.{}".format(data.values.name, data.values.namespace, data.values.ingressDomain)
+    http:
+      paths:
+      - backend:
+          serviceName: notebook
+          servicePort: 8888
+        path: /
